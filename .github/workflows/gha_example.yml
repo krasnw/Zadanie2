@@ -60,16 +60,18 @@ jobs:
           command: cves
           image: ${{ steps.meta.outputs.tags }}
           ignore-unchanged: true
-          only-severities: critical
+          only-severities: critical, high
           github-token: ${{ secrets.GITHUB_TOKEN }}
           organization: prayforstpetersburg1991
           exit-code: true
 
       - 
-        name: Push Docker image
+        name: Push Docker image to GHCR
         if: ${{ success() && steps.docker-scout.outcome == 'success'  }}
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ghcr.io/${{ github.repository_owner }}/zag1img:${{ steps.meta.outputs.tags }}
+          labels: |
+            org.opencontainers.image.source= ${{ github.repository }}
