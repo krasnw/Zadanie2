@@ -57,9 +57,8 @@ jobs:
         id: docker-scout
         uses: docker/scout-action@v1
         with:
-          command: compare
+          command: смуы
           image: ${{ steps.meta.outputs.tags }}
-          to-env: production
           ignore-unchanged: true
           only-severities: critical
           github-token: ${{ secrets.GITHUB_TOKEN }}
