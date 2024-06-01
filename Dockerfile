@@ -7,5 +7,3 @@ RUN apk add --no-cache busybox-extras
 # Сделайте порт 3000 доступным для мира за пределами этого контейнера
 EXPOSE 3000
 
-# Запустите HTTP-сервер
-CMD ["httpd", "-fvv", "-p", "3000", "-h", "/www"]
