@@ -10,7 +10,7 @@ Prosta aplikacja webowa w JavaScript, wzięta z rozwiązania zadania 1.
 
 ### Uwagi:
 - Moje rozwiązanie zadania 1, ma jedną krytyczną podatność. Więc obraz nie pojawia się w GHCR.
-Aby pokazać poprawność działania łańcuchy CI, treść Dockerfile powinna być następująca:
+Aby pokazać poprawność działania łańcuchu CI, treść Dockerfile powinna być następująca:
 ```Dockerfile
 FROM alpine:3.17
 
