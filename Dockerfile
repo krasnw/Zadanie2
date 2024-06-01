@@ -1,19 +1,5 @@
 # do budowy obrazu wybrałem node:14-alpine3.17
-FROM node:14-alpine3.17
-
-# zmienna srodowiskowa VERSION z wartoscia domyslna v1.0
-ARG VERSION
-ENV VERSION=${VERSION:-v1.0}
-
-# etykieta z informacja o autorze
-LABEL maintainer="Uladzislau Krasnavitski"
-
-# kopiowanie plikow aplikacji do katalogu /app
-WORKDIR /app
-COPY src .
-
-# instalacja zaleznosci
-RUN npm install
+FROM alpine:3.17
 
 EXPOSE 3000
 
