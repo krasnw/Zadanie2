@@ -1,8 +1,10 @@
-# PAwChO - przekład wykorzystania Github Actions 
+# PAwChO - Rozwiązanie zadania 2
 
-Bardzo prosta aplikacja: serwer http ze statyczną stroną www 
-Plik "./github/workflows/gha_w4.yml" definiuje:
-pipeline GitHub Actions 
+Prosta aplikacja webowa w JavaScript, wzięta z rozwiązania zadania 1.
+
+[Pipeline](.github/workflows/gha_example.yml) definiuje:
+
 - budowanie obrazu multiarch, 
-- przesłanie na Dockerhub z nowym tagiem, 
+- testowanie bezpieczeństwa obrazu,
+- przesłanie na Github z nowym tagiem, 
 - wykorzystanie cache
