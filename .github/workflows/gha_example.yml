@@ -1,4 +1,4 @@
-name: GHAction zad1Img  
+name: GHAction zad1img  
 
 on:
   workflow_dispatch:
@@ -21,7 +21,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ 'krasnw' }}/zad1Img
+          images: ghcr.io/${{ 'krasnw' }}/zad1img
           flavor: latest=false
           tags: |
             type=sha,priority=100,prefix=sha-,format=short
@@ -46,8 +46,8 @@ jobs:
       - 
         name: Docker Scan
         run: |
-            docker build -t ghcr.io/${{ 'krasnw' }}/zad1Img .
-            docker scan --severity high --reject ghcr.io/${{ 'krasnw' }}/zad1Img
+            docker build -t ghcr.io/${{ 'krasnw' }}/zad1img .
+            docker scan --severity high --reject ghcr.io/${{ 'krasnw' }}/zad1img
 
       - 
         name: Build and push Docker image
@@ -59,7 +59,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           cache-from: |
-            type=registry,ref=ghcr.io/${{ 'krasnw' }}/zad1Img:cache 
+            type=registry,ref=ghcr.io/${{ 'krasnw' }}/zad1img:cache 
           cache-to: |
-            type=registry,ref=ghcr.io/${{ 'krasnw' }}/zad1Img:cache  
+            type=registry,ref=ghcr.io/${{ 'krasnw' }}/zad1img:cache  
           tags: ${{ steps.meta.outputs.tags }}
