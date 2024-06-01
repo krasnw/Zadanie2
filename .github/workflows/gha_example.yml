@@ -41,10 +41,17 @@ jobs:
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - 
+        name: Docker Scan
+        run: |
+            docker build -t ${{ vars.DOCKERHUB_USERNAME }}/example .
+            docker scan --severity high --reject ${{ vars.DOCKERHUB_USERNAME }}/example
 
       - 
         name: Build and push Docker image
         uses: docker/build-push-action@v5
+        if: ${{ success() }}
         with:
           context: .
           file: ./Dockerfile
@@ -55,4 +62,3 @@ jobs:
           cache-to: |
             type=registry,ref=${{ vars.DOCKERHUB_USERNAME }}/example:cache  
           tags: ${{ steps.meta.outputs.tags }}
-      

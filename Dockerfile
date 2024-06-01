@@ -1,12 +1,25 @@
-FROM busybox:1.35
+# do budowy obrazu wybrałem node:14-alpine3.17
+FROM node:14-alpine3.17
 
-# Create a non-root user to own the httpd server files
-RUN adduser -D static
-USER static
-WORKDIR /home/static
+# zmienna srodowiskowa VERSION z wartoscia domyslna v1.0
+ARG VERSION
+ENV VERSION=${VERSION:-v1.0}
 
-# Copy the page source to declared workdir
+# etykieta z informacja o autorze
+LABEL maintainer="Uladzislau Krasnavitski"
+
+# kopiowanie plikow aplikacji do katalogu /app
+WORKDIR /app
 COPY src .
 
-# Run BusyBox httpd server
-CMD ["busybox", "httpd", "-f", "-v", "-p", "3000"]
+# instalacja zaleznosci
+RUN npm install
+
+EXPOSE 3000
+
+# monitorowanie dostepnosci serwera 
+HEALTHCHECK --interval=4s --timeout=100s --start-period=3s \
+    CMD curl -f http://localhost:3000/ || exit 1
+
+# przypisanie komendy uruchamiajacej serwer
+ENTRYPOINT ["node", "index.js"]
