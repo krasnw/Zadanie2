@@ -18,7 +18,7 @@ RUN apk add --no-cache busybox-extras
 
 EXPOSE 3000
 ```
-Jest to prosty obraz bez rzadnych podatności
+Jest to prosty obraz bez żadnych podatności
 
 ### Wynik działania pipeline dla obrazu bez podatności:
 ![result](obrazki/image.png)
