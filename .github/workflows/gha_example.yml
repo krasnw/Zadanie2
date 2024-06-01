@@ -66,7 +66,7 @@ jobs:
 
       - 
         name: Push Docker image
-        if: ${{ success() && steps.docker-scout.outputs.vulnerability-count == '0'  }}
+        if: ${{ success() && steps.docker-scout.outcome == 'success'  }}
         uses: docker/build-push-action@v3
         with:
           context: .
